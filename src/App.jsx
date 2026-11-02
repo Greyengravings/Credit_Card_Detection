@@ -159,7 +159,10 @@ function CSVWorkflow({ job, summary, score, onFile, onDownload }) {
           <h2 id="csv-workspace-title">Upload a credit dataset</h2>
           <p>Train and evaluate from labeled data, or score new customers with your trained model.</p>
         </div>
-        <span className="csv-private-badge"><span /> STAYS IN THIS BROWSER</span>
+        <div className="csv-heading-badges">
+          <span className="csv-start-badge">01 · START HERE</span>
+          <span className="csv-private-badge"><span /> STAYS IN THIS BROWSER</span>
+        </div>
       </div>
       <div
         className={`csv-dropzone${dragOver ? " csv-dropzone-active" : ""}${processing ? " csv-dropzone-busy" : ""}`}
@@ -239,7 +242,7 @@ function CSVWorkflow({ job, summary, score, onFile, onDownload }) {
         </div>
       )}
       {job.status === "trained" && summary && (
-        <div className="csv-results">
+        <div className="csv-results csv-results-training">
           <div className="csv-result-heading">
             <div>
               <span className="csv-result-kicker">TRAINING COMPLETE</span>
@@ -290,7 +293,7 @@ function CSVWorkflow({ job, summary, score, onFile, onDownload }) {
         </div>
       )}
       {job.status === "scored" && score && (
-        <div className="csv-results">
+        <div className="csv-results csv-results-scoring">
           <div className="csv-result-heading">
             <div>
               <span className="csv-result-kicker">SCORING COMPLETE</span>
@@ -448,7 +451,7 @@ function Sidebar({ activeSection, onNavigate, isOpen, onClose, profile, onProfil
 
 function MetricCard({ icon, label, value, note, tone }) {
   return (
-    <article className="metric-card">
+    <article className={`metric-card metric-card-${tone}`}>
       <div className="metric-top">
         <span className={`metric-icon ${tone}`}><Icon name={icon} size={17} /></span>
         <span className="metric-label">{label}</span>
