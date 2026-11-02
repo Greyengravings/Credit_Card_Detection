@@ -215,10 +215,10 @@ function CSVWorkflow({ job, summary, score, onFile, onDownload }) {
       <div className="csv-workspace-footer">
         <span className="csv-required-fields">UCI fields: LIMIT_BAL, PAY_0…PAY_6, BILL_AMT1…6, PAY_AMT1…6, and demographics</span>
         <div className="csv-download-links">
-          <a className="csv-template-link" href="/sample-credit-default.csv" download>
+          <a className="csv-template-link" href={`${import.meta.env.BASE_URL}sample-credit-default.csv`} download>
             Download training sample
           </a>
-          <a className="csv-template-link" href="/sample-credit-default-unlabeled.csv" download>
+          <a className="csv-template-link" href={`${import.meta.env.BASE_URL}sample-credit-default-unlabeled.csv`} download>
             Download scoring sample
           </a>
           <button type="button" className="csv-template-link" onClick={downloadTemplate}>CSV template</button>
