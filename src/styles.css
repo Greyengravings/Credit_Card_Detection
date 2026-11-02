@@ -1980,3 +1980,1098 @@ h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+.csv-workspace {
+  margin-top: 20px;
+  padding: 21px;
+  border: 1px solid #e6ebf4;
+  border-radius: 11px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(233, 239, 255, 0.62), transparent 40%),
+    #fff;
+  box-shadow: 0 3px 12px rgba(25, 43, 76, 0.025);
+}
+
+.csv-workspace-heading,
+.csv-result-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.csv-workspace-heading h2 {
+  margin: 5px 0 4px;
+  color: #202c46;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.75px;
+}
+
+.csv-workspace-heading p,
+.csv-result-heading p {
+  margin: 0;
+  color: #808ba0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.csv-private-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid #dcefe8;
+  border-radius: 6px;
+  color: #3d856d;
+  background: #f3fbf7;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.csv-private-badge > span,
+.csv-ready-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #1bac7e;
+}
+
+.csv-dropzone {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  gap: 13px;
+  margin-top: 17px;
+  padding: 13px 15px;
+  border: 1px dashed #cbd5e7;
+  border-radius: 9px;
+  background: rgba(249, 251, 255, 0.85);
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.csv-dropzone:hover,
+.csv-dropzone-active {
+  border-color: #708be5;
+  background: #f5f7ff;
+}
+
+.csv-dropzone-busy {
+  cursor: progress;
+  opacity: 0.75;
+}
+
+.csv-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.csv-upload-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  color: #607ee1;
+  background: #edf2ff;
+}
+
+.csv-upload-copy {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.csv-upload-copy strong {
+  overflow: hidden;
+  color: #36435e;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.csv-upload-copy small {
+  color: #8893a7;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.csv-browse-button,
+.csv-download-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #dce4f2;
+  border-radius: 7px;
+  color: #4a66bd;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.csv-workspace-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  color: #909bad;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.csv-required-fields {
+  min-width: 180px;
+}
+
+.csv-download-links {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 13px;
+}
+
+.csv-template-link {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  color: #5e77c9;
+  background: none;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.csv-template-link:hover {
+  color: #3c57ad;
+  text-decoration: underline;
+}
+
+.csv-source-note {
+  margin-top: 7px;
+  color: #a0a9b7;
+  font-size: 9px;
+}
+
+.csv-source-note a {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #647ac0;
+  font-weight: 600;
+}
+
+.csv-source-note a:hover {
+  text-decoration: underline;
+}
+
+.csv-alert {
+  display: grid;
+  gap: 4px;
+  margin-top: 13px;
+  padding: 11px 12px;
+  border: 1px solid #f1d8d1;
+  border-radius: 7px;
+  color: #854d44;
+  background: #fff8f6;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.csv-alert strong {
+  color: #79443c;
+}
+
+.csv-progress {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+  color: #63728d;
+  font-size: 11px;
+}
+
+.csv-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #dce4f5;
+  border-top-color: #607ee1;
+  border-radius: 50%;
+  animation: csv-spin 700ms linear infinite;
+}
+
+@keyframes csv-spin {
+  to { transform: rotate(360deg); }
+}
+
+.csv-results {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e9edf4;
+}
+
+.csv-result-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: #218968;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.csv-result-heading h3 {
+  margin: 0 0 4px;
+  color: #25314b;
+  font-family: "Manrope", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.csv-result-heading p {
+  font-size: 11px;
+}
+
+.csv-target-badge {
+  flex: 0 0 auto;
+  padding: 7px 9px;
+  border: 1px solid #f0dfc9;
+  border-radius: 6px;
+  color: #8d683c;
+  background: #fffaf1;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.csv-metrics-wrap {
+  overflow-x: auto;
+  margin-top: 14px;
+  border: 1px solid #e9edf4;
+  border-radius: 8px;
+}
+
+.csv-metrics-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  color: #55627a;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.csv-metrics-table th,
+.csv-metrics-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #edf0f5;
+  white-space: nowrap;
+}
+
+.csv-metrics-table thead th {
+  color: #8994a8;
+  background: #fafbfe;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.csv-metrics-table thead th:first-child,
+.csv-metrics-table tbody th {
+  text-align: left;
+}
+
+.csv-metrics-table tbody th {
+  color: #3f4c66;
+  font-weight: 600;
+}
+
+.csv-metrics-table tbody tr:last-child th,
+.csv-metrics-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.csv-metrics-table tbody tr:hover {
+  background: #f7f9fd;
+}
+
+.csv-results-footnote {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: #8490a3;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.csv-results-footnote svg {
+  flex: 0 0 auto;
+  color: #6681db;
+}
+
+.csv-preprocess-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.csv-preprocess-summary span {
+  padding: 6px 8px;
+  border-radius: 5px;
+  color: #7b879b;
+  background: #f5f7fb;
+  font-size: 9px;
+}
+
+.csv-preprocess-summary strong {
+  color: #485671;
+}
+
+.csv-confusion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+  margin-top: 11px;
+  padding: 9px 10px;
+  border: 1px solid #e9edf4;
+  border-radius: 7px;
+  color: #7a869b;
+  background: #fbfcfe;
+  font-size: 9px;
+}
+
+.csv-confusion > strong {
+  width: 100%;
+  color: #4a5871;
+  font-size: 10px;
+}
+
+.csv-confusion b {
+  color: #68758c;
+  font-weight: 600;
+}
+
+.csv-download-button {
+  border-color: #dbe5fb;
+  color: #4c67bd;
+  cursor: pointer;
+}
+
+.csv-download-button:hover {
+  background: #f3f6ff;
+}
+
+.score-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.score-summary > span {
+  padding: 7px 9px;
+  border: 1px solid #e9edf4;
+  border-radius: 6px;
+  color: #748099;
+  background: #fbfcfe;
+  font-size: 9px;
+}
+
+.score-summary strong {
+  margin-right: 3px;
+  color: #35425d;
+}
+
+.score-table {
+  min-width: 430px;
+}
+
+.score-band {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.score-band-high {
+  color: #a55047;
+  background: #fff0ec;
+}
+
+.score-band-moderate {
+  color: #987137;
+  background: #fff6e5;
+}
+
+.score-band-lower {
+  color: #288267;
+  background: #eaf7f1;
+}
+
+.csv-model-ready {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  color: #48836e;
+  font-size: 10px;
+}
+
+.csv-ready-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.behavior-bar {
+  position: relative;
+}
+
+.behavior-bar small {
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  color: #52617b;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.behavior-bar-two small { color: #ad7c38; }
+.behavior-bar-three small { color: #bc6355; }
+
+.scenario-score-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 0 38px;
+  color: #8390a6;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.65px;
+}
+
+.scenario-score-value strong {
+  color: #35425d;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.3px;
+}
+
+@media (max-width: 700px) {
+  .csv-workspace {
+    margin-top: 14px;
+    padding: 16px;
+  }
+
+  .csv-workspace-heading {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .csv-workspace-heading h2 {
+    font-size: 21px;
+  }
+
+  .csv-workspace-heading p {
+    font-size: 11px;
+  }
+
+  .csv-dropzone {
+    min-height: 74px;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 11px;
+  }
+
+  .csv-upload-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .csv-upload-copy {
+    flex-basis: calc(100% - 50px);
+  }
+
+  .csv-upload-copy strong {
+    font-size: 12px;
+  }
+
+  .csv-upload-copy small {
+    font-size: 9px;
+  }
+
+  .csv-browse-button {
+    min-height: 31px;
+    margin-left: 43px;
+    font-size: 10px;
+  }
+
+  .csv-workspace-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 9px;
+  }
+
+  .csv-download-links {
+    justify-content: flex-start;
+    gap: 7px 12px;
+  }
+
+  .csv-result-heading {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .csv-result-heading h3 {
+    font-size: 17px;
+  }
+
+  .csv-result-heading p {
+    font-size: 10px;
+  }
+
+  .csv-preprocess-summary {
+    display: grid;
+  }
+
+  .csv-confusion {
+    gap: 7px 10px;
+  }
+
+  .csv-target-badge {
+    align-self: flex-start;
+  }
+}
+
+.insights-section .section-heading h2,
+.model-section .section-heading h2,
+.explorer-section .section-heading h2,
+.methodology-section .section-heading h2 {
+  font-size: 32px;
+}
+
+.insights-section .section-heading p,
+.model-section .section-heading p,
+.explorer-section .section-heading p,
+.methodology-section .section-heading p {
+  font-size: 15px;
+}
+
+.insights-section .eyebrow,
+.model-section .eyebrow,
+.explorer-section .eyebrow,
+.methodology-section .eyebrow {
+  font-size: 12px;
+}
+
+.insights-section .panel-heading h3,
+.model-section .comparison-title h3,
+.explorer-section .explorer-intro h3 {
+  font-size: 21px;
+}
+
+.insights-section .panel-heading p,
+.model-section .comparison-title p,
+.explorer-section .explorer-intro p {
+  font-size: 13px;
+}
+
+.insights-section .feature-name-wrap strong,
+.insights-section .feature-value {
+  font-size: 15px;
+}
+
+.insights-section .feature-name-wrap small,
+.insights-section .feature-footnote,
+.insights-section .behavior-category,
+.insights-section .behavior-annotation,
+.insights-section .behavior-callout p,
+.insights-section .dataset-meta span,
+.insights-section .distribution-copy span,
+.insights-section .distribution-legend span {
+  font-size: 12px;
+}
+
+.insights-section .distribution-copy strong,
+.insights-section .dataset-meta strong,
+.insights-section .distribution-legend strong {
+  font-size: 14px;
+}
+
+.insights-section .distribution-value small {
+  font-size: 11px;
+}
+
+.model-section .model-card h3 {
+  font-size: 25px;
+}
+
+.model-section .model-card > p,
+.model-section .model-note,
+.model-section .comparison-row {
+  font-size: 13px;
+}
+
+.model-section .comparison-head {
+  font-size: 11px;
+}
+
+.model-section .comparison-footnote {
+  font-size: 12px;
+}
+
+.model-section .model-metric span,
+.model-section .model-status,
+.model-section .comparison-badge {
+  font-size: 10px;
+}
+
+.explorer-section .field-label {
+  font-size: 14px;
+}
+
+.explorer-section .select-wrap select,
+.explorer-section .range-label strong {
+  font-size: 15px;
+}
+
+.explorer-section .range-ends,
+.explorer-section .result-topline,
+.explorer-section .risk-description,
+.explorer-section .result-disclaimer {
+  font-size: 12px;
+}
+
+.explorer-section .demo-pill {
+  font-size: 10px;
+}
+
+.methodology-section .method-step h3 {
+  font-size: 15px;
+}
+
+.methodology-section .method-step p,
+.methodology-section .method-footer p,
+.methodology-section .method-footer > a {
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .insights-section .section-heading h2,
+  .model-section .section-heading h2,
+  .explorer-section .section-heading h2,
+  .methodology-section .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .insights-section .section-heading p,
+  .model-section .section-heading p,
+  .explorer-section .section-heading p,
+  .methodology-section .section-heading p {
+    font-size: 13px;
+  }
+
+  .insights-section .panel-heading h3,
+  .model-section .comparison-title h3,
+  .explorer-section .explorer-intro h3 {
+    font-size: 19px;
+  }
+
+  .insights-section .feature-name-wrap strong,
+  .insights-section .feature-value {
+    font-size: 14px;
+  }
+
+  .insights-section .feature-name-wrap small,
+  .insights-section .feature-footnote,
+  .insights-section .behavior-category,
+  .insights-section .behavior-callout p,
+  .insights-section .distribution-copy span,
+  .model-section .model-card > p,
+  .model-section .model-note,
+  .model-section .comparison-row,
+  .explorer-section .field-label,
+  .explorer-section .select-wrap select,
+  .explorer-section .risk-description,
+  .explorer-section .result-disclaimer,
+  .methodology-section .method-step p,
+  .methodology-section .method-footer p {
+    font-size: 11px;
+  }
+
+  .insights-section .dataset-meta span,
+  .insights-section .dataset-meta strong {
+    font-size: 10px;
+  }
+
+  .methodology-section .method-step h3 {
+    font-size: 13px;
+  }
+}
+
+.insights-section .feature-panel {
+  border-color: #dfe7fb;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(221, 231, 255, 0.6), transparent 44%),
+    #f9faff;
+}
+
+.insights-section .behavior-panel {
+  border-color: #f3dfda;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(255, 230, 222, 0.64), transparent 44%),
+    #fffaf8;
+}
+
+.insights-section .dataset-panel {
+  border-color: #e5e0f6;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(235, 229, 255, 0.63), transparent 48%),
+    #fcfbff;
+}
+
+.insights-section .feature-panel .panel-heading h3,
+.insights-section .feature-panel .feature-name-wrap strong {
+  color: #344f9e;
+}
+
+.insights-section .behavior-panel .panel-heading h3 {
+  color: #9f5349;
+}
+
+.insights-section .dataset-panel .panel-heading h3 {
+  color: #62539f;
+}
+
+.insights-section .feature-track {
+  height: 7px;
+  background: #e8edfb;
+}
+
+.insights-section .feature-label {
+  gap: 12px;
+}
+
+.insights-section .feature-list {
+  gap: 15px;
+}
+
+.insights-section .feature-name-wrap {
+  gap: 4px;
+}
+
+.insights-section .feature-name-wrap strong,
+.insights-section .feature-value {
+  font-size: 17px;
+}
+
+.insights-section .feature-name-wrap small {
+  color: #7784a0;
+  font-size: 13px;
+}
+
+.insights-section .feature-rank {
+  width: 22px;
+  font-size: 13px;
+}
+
+.insights-section .feature-footnote,
+.insights-section .behavior-callout p,
+.insights-section .distribution-copy span,
+.insights-section .distribution-legend span,
+.insights-section .dataset-meta span {
+  font-size: 13px;
+}
+
+.insights-section .behavior-visual {
+  border-color: #f3e5e0;
+  background: #fffdfc;
+}
+
+.insights-section .behavior-bars {
+  height: 142px;
+}
+
+.insights-section .behavior-bar {
+  width: min(52px, 60%);
+}
+
+.insights-section .behavior-category {
+  min-height: 28px;
+  color: #5f6b82;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.insights-section .behavior-annotation,
+.insights-section .behavior-axis {
+  color: #758197;
+  font-size: 11px;
+}
+
+.insights-section .behavior-callout {
+  border: 1px solid #f2e0d9;
+  background: #fff2ed;
+}
+
+.insights-section .distribution-value strong {
+  color: #56468f;
+  font-size: 34px;
+}
+
+.insights-section .distribution-copy strong,
+.insights-section .dataset-meta strong,
+.insights-section .distribution-legend strong {
+  color: #42376d;
+  font-size: 15px;
+}
+
+.insights-section .dataset-meta {
+  border-color: #e9e4f7;
+}
+
+.model-section .model-card-featured {
+  border-color: #d9e8e2;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(210, 241, 228, 0.83), transparent 55%),
+    #f8fcf9;
+}
+
+.model-section .comparison-card {
+  border-color: #dfe6f5;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(225, 233, 255, 0.65), transparent 48%),
+    #fafbff;
+}
+
+.model-section .model-card h3 {
+  color: #226b56;
+  font-size: 27px;
+}
+
+.model-section .model-metric strong {
+  color: #185f4b;
+  font-size: 34px;
+}
+
+.model-section .model-note {
+  border-color: #dcebe3;
+  color: #486a5d;
+  background: rgba(240, 250, 244, 0.92);
+  font-size: 13px;
+}
+
+.model-section .comparison-row {
+  min-height: 41px;
+  color: #43536f;
+  font-size: 14px;
+}
+
+.model-section .comparison-head {
+  min-height: 30px;
+  color: #647392;
+  font-size: 11px;
+}
+
+.model-section .comparison-row-highlight {
+  background: #eaf6ef;
+}
+
+.model-section .comparison-row-highlight > span:not(:first-child) {
+  color: #167451;
+  font-size: 15px;
+}
+
+.model-section .comparison-footnote {
+  color: #74819a;
+  font-size: 13px;
+}
+
+.explorer-section .explorer-panel {
+  border-color: #dfe7f3;
+  background: #fbfcff;
+}
+
+.explorer-section .explorer-inputs {
+  background: #f5f8ff;
+}
+
+.explorer-section .explorer-result {
+  border-color: #e2e6f4;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(231, 229, 255, 0.72), transparent 63%),
+    #faf9ff;
+}
+
+.explorer-section .select-wrap select {
+  height: 45px;
+  border-color: #d9e2f2;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.explorer-section .field-label,
+.explorer-section .range-label strong {
+  font-size: 15px;
+}
+
+.explorer-section .risk-result strong {
+  font-size: 30px;
+}
+
+.explorer-section .risk-description,
+.explorer-section .result-disclaimer {
+  color: #65728a;
+  font-size: 13px;
+}
+
+.explorer-section .result-topline {
+  color: #65728a;
+  font-size: 11px;
+}
+
+.explorer-section .scenario-score-value strong {
+  color: #55489d;
+  font-size: 17px;
+}
+
+.methodology-section .methodology-grid {
+  gap: 10px;
+  padding: 18px;
+  border-color: #e3e1f3;
+  background: #f9f8ff;
+}
+
+.methodology-section .method-step {
+  min-height: 112px;
+  padding: 12px;
+  border: 1px solid #e8e5f6;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.methodology-section .method-step:first-child,
+.methodology-section .method-step:last-child {
+  padding: 12px;
+}
+
+.methodology-section .method-step:nth-child(1) {
+  border-color: #dce6fa;
+  background: #f5f8ff;
+}
+
+.methodology-section .method-step:nth-child(2) {
+  border-color: #d9eee6;
+  background: #f4fbf7;
+}
+
+.methodology-section .method-step:nth-child(3) {
+  border-color: #e9e0f4;
+  background: #fbf7ff;
+}
+
+.methodology-section .method-step:nth-child(4) {
+  border-color: #f2e5d7;
+  background: #fffbf5;
+}
+
+.methodology-section .method-step h3 {
+  color: #34425e;
+  font-size: 17px;
+}
+
+.methodology-section .method-step p {
+  color: #66748d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.methodology-section .step-connector {
+  display: none;
+}
+
+.methodology-section .method-footer {
+  border-color: #dfe5f5;
+  background: #f2f5ff;
+}
+
+.methodology-section .method-footer p {
+  color: #5e6d87;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .insights-section .feature-name-wrap strong,
+  .insights-section .feature-value {
+    font-size: 15px;
+  }
+
+  .insights-section .feature-name-wrap small,
+  .insights-section .feature-footnote,
+  .insights-section .behavior-callout p,
+  .insights-section .distribution-copy span,
+  .insights-section .distribution-legend span,
+  .model-section .model-note,
+  .model-section .comparison-row,
+  .model-section .comparison-footnote,
+  .explorer-section .risk-description,
+  .explorer-section .result-disclaimer,
+  .methodology-section .method-step p,
+  .methodology-section .method-footer p {
+    font-size: 11px;
+  }
+
+  .insights-section .behavior-bars {
+    height: 128px;
+    gap: 9px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .insights-section .behavior-category {
+    font-size: 10px;
+  }
+
+  .model-section .comparison-row {
+    min-height: 38px;
+  }
+
+  .model-section .comparison-card,
+  .model-section .model-card {
+    padding: 16px;
+  }
+
+  .methodology-section .methodology-grid {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .methodology-section .method-step,
+  .methodology-section .method-step:first-child,
+  .methodology-section .method-step:last-child {
+    min-height: 104px;
+    padding: 10px;
+  }
+}

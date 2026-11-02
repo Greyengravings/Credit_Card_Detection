@@ -85,40 +85,64 @@ function parseCsv(text) {
   if (missing.length) {
     throw new Error(`Missing required UCI columns: ${missing.join(", ")}. Rename the headers to match the UCI credit default dataset.`);
   }
-  const targetColumn = headers.find((header) => TARGET_COLUMNS.has(header));
+  const headerTargetColumn = headers.find((header) => TARGET_COLUMNS.has(header));
 
   const rows = [];
   let missingTargets = 0;
+  let labeledRows = 0;
   for (let index = 0; index < parsed.data.length; index += 1) {
     const record = parsed.data[index];
-    const values = FEATURE_COLUMNS.map((column) => parseNumber(record[column]));
+    const values = FEATURE_COLUMNS.map((column) => (
+      parseNumber(record[column], `${column} on CSV row ${index + 2}`)
+    ));
     let target;
-    if (targetColumn) {
-      const rawTarget = parseNumber(record[targetColumn]);
+    if (headerTargetColumn) {
+      const rawTarget = parseNumber(record[headerTargetColumn], `${headerTargetColumn} on CSV row ${index + 2}`);
       if (!Number.isFinite(rawTarget)) {
         missingTargets += 1;
+        cleanCategoryValues(values);
+        rows.push({
+          values,
+          target,
+          sourceRow: index + 2,
+          customerId: record.ID === undefined ? null : String(record.ID).trim(),
+        });
         continue;
       }
       if (rawTarget !== 0 && rawTarget !== 1) {
-        throw new Error(`Target values must be 0 or 1. Found "${record[targetColumn]}" on CSV row ${index + 2}.`);
+        throw new Error(`Target values must be 0 or 1. Found "${record[headerTargetColumn]}" on CSV row ${index + 2}.`);
       }
       target = rawTarget;
+      labeledRows += 1;
     }
 
     cleanCategoryValues(values);
-    rows.push({ values, target, sourceRow: index + 2 });
+    rows.push({
+      values,
+      target,
+      sourceRow: index + 2,
+      customerId: record.ID === undefined ? null : String(record.ID).trim(),
+    });
   }
 
   if (!rows.length) throw new Error("No usable customer rows were found in the CSV.");
-  return { rows, headers, targetColumn: targetColumn || null, missingTargets };
+  return {
+    rows,
+    headers,
+    targetColumn: labeledRows ? headerTargetColumn : null,
+    missingTargets,
+  };
 }
 
-function parseNumber(value) {
+function parseNumber(value, context) {
   if (value === undefined || value === null || String(value).trim() === "") return NaN;
   const normalized = String(value).trim();
   if (/^(NA|N\/A|NULL|\?)$/i.test(normalized)) return NaN;
   const number = Number(normalized);
-  return Number.isFinite(number) ? number : NaN;
+  if (!Number.isFinite(number)) {
+    throw new Error(`Expected a numeric value for ${context}; found "${normalized}".`);
+  }
+  return number;
 }
 
 function cleanCategoryValues(values) {
@@ -186,7 +210,6 @@ function fitPreprocessor(trainRows) {
   const medians = {};
   const bounds = {};
   const categoryValues = {};
-  let imputedCells = 0;
 
   FEATURE_COLUMNS.forEach((column, columnIndex) => {
     const values = trainRows.map((row) => row.values[columnIndex]).filter(Number.isFinite);
@@ -207,9 +230,6 @@ function fitPreprocessor(trainRows) {
       }
     }
 
-    for (const row of trainRows) {
-      if (!Number.isFinite(row.values[columnIndex])) imputedCells += 1;
-    }
   });
 
   const featureNames = [];
@@ -230,7 +250,6 @@ function fitPreprocessor(trainRows) {
   return {
     preprocessor,
     trainMatrix: trainMatrix.map((row) => selectedFeatureIndices.map((index) => row[index])),
-    imputedCells,
   };
 }
 
@@ -565,7 +584,7 @@ export async function analyzeAndTrain(text, progress = () => {}) {
   const seen = new Set();
   let duplicatesRemoved = 0;
   const rows = [];
-  for (const row of parsed.rows) {
+  for (const row of parsed.rows.filter((item) => Number.isFinite(item.target))) {
     const signature = `${row.values.join("|")}|${row.target}`;
     if (seen.has(signature)) {
       duplicatesRemoved += 1;
@@ -579,7 +598,7 @@ export async function analyzeAndTrain(text, progress = () => {}) {
   const trainRows = trainIndices.map((index) => rows[index]);
   const testRows = testIndices.map((index) => rows[index]);
   progressMessage(progress, "preprocessing", "Imputing missing values, capping outliers, encoding categories");
-  const { preprocessor, trainMatrix, imputedCells } = fitPreprocessor(trainRows);
+  const { preprocessor, trainMatrix } = fitPreprocessor(trainRows);
   const testMatrix = testRows.map((row) => transformRow(row, preprocessor));
   const trainLabels = trainRows.map((row) => row.target);
   const testLabels = testRows.map((row) => row.target);
@@ -657,15 +676,16 @@ export async function analyzeAndTrain(text, progress = () => {}) {
     { name: "Random Forest", key: "forest", ...forestMetrics },
   ];
   const defaultCount = rows.filter((row) => row.target === 1).length;
-  const totalCells = trainRows.length * FEATURE_COLUMNS.length;
+  const totalCells = rows.length * FEATURE_COLUMNS.length;
+  const imputedCells = rows.reduce((count, row) => (
+    count + row.values.filter((value) => !Number.isFinite(value)).length
+  ), 0);
   const summary = {
     fileRows: parsed.rows.length,
     rows: rows.length,
     duplicatesRemoved,
     missingTargets: parsed.missingTargets,
-    imputedCells: imputedCells + trainRows.reduce((count, row) => (
-      count + row.values.filter((value) => !Number.isFinite(value)).length
-    ), 0),
+    imputedCells,
     missingCells: totalCells ? Math.round((imputedCells / totalCells) * 1000) / 10 : 0,
     defaults: defaultCount,
     defaultRate: defaultCount / rows.length,
@@ -693,24 +713,14 @@ export function scoreCsv(text, model) {
     throw new Error("This CSV includes the DEFAULT target. Upload an unlabeled customer CSV to score, or replace the current training analysis.");
   }
   const featureRows = parsed.rows;
-  const uniqueRows = [];
-  const seen = new Set();
-  let duplicatesRemoved = 0;
-  for (const row of featureRows) {
-    const signature = row.values.join("|");
-    if (seen.has(signature)) duplicatesRemoved += 1;
-    else {
-      seen.add(signature);
-      uniqueRows.push(row);
-    }
-  }
   const { preprocessor, forest } = model;
-  const scores = uniqueRows.map((row) => {
+  const scores = featureRows.map((row) => {
     const transformed = transformRow(row, preprocessor);
     return forest.reduce((sum, tree) => sum + predictTree(tree, transformed), 0) / forest.length;
   });
-  const output = uniqueRows.map((row, index) => ({
+  const output = featureRows.map((row, index) => ({
     source_row: row.sourceRow,
+    ...(row.customerId ? { customer_id: row.customerId } : {}),
     default_risk_score: Number(scores[index].toFixed(6)),
     risk_band: scores[index] >= 0.65 ? "High" : scores[index] >= 0.35 ? "Moderate" : "Lower",
   }));
@@ -719,7 +729,7 @@ export function scoreCsv(text, model) {
   const countModerate = output.filter((row) => row.risk_band === "Moderate").length;
   return {
     rows: output.length,
-    duplicatesRemoved,
+    duplicatesRemoved: 0,
     averageScore: scores.reduce((sum, score) => sum + score, 0) / (scores.length || 1),
     high: countHigh,
     moderate: countModerate,
@@ -729,3 +739,15 @@ export function scoreCsv(text, model) {
   };
 }
 
+export function scoreScenario(lateMonths, paymentCoverage, model) {
+  const { preprocessor, forest } = model;
+  const values = FEATURE_COLUMNS.map((column) => preprocessor.medians[column]);
+  values[5] = Number(lateMonths);
+  values[17] = Math.max(0, values[11] * (Number(paymentCoverage) / 100));
+  const row = transformRow({ values }, preprocessor);
+  const score = forest.reduce((sum, tree) => sum + predictTree(tree, row), 0) / forest.length;
+  return {
+    score,
+    band: score >= 0.65 ? "High" : score >= 0.35 ? "Moderate" : "Lower",
+  };
+}
